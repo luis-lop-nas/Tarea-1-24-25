@@ -47,4 +47,4 @@ class Character(Entity):
         pass    
     
     def take_damage(self, damage):
-        """ 
+        pass
