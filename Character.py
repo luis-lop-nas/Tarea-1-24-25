@@ -4,15 +4,23 @@ class Character(Entity):
     def __init__(self, lives):
         super().__init__()
         self.lives = lives
-        self.is_alive = lives > 0
-
+        
     def move(self, direction):
         """
         Moves the character in the specified direction.
         :param direction: A string indicating the direction (e.g., 'up', 'down', 'left', 'right').
         """
-        # Implement movement logic here
-        pass
+        step = 1  # Define the step size for movement
+        if direction == 'up':
+            self.y -= step  # Move up by decreasing the y-coordinate
+        elif direction == 'down':
+            self.y += step  # Move down by increasing the y-coordinate
+        elif direction == 'left':
+            self.x -= step  # Move left by decreasing the x-coordinate
+        elif direction == 'right':
+            self.x += step  # Move right by increasing the x-coordinate
+        else:
+            print(f"Invalid direction: {direction}")
 
     def shoot(self):
         """
@@ -38,34 +46,9 @@ class Character(Entity):
         # Reset other character-specific attributes here
         pass
 
-    def serialize(self):
-        """
-        Serializes the character's state.
-        :return: A dictionary representing the character's state.
-        """
-        data = super().serialize()
-        data.update({
-            "lives": self.lives,
-            "is_alive": self.is_alive
-        })
-        return data
-    def deserialize(self, data):
-        """"
-        "Deserializes the character's state from a dictionary."
-        """
-        super().deserialize(data)
-        self.lives = data["lives"]
-        self.is_alive = data["is_alive"]
     def __str__(self):
         """
         Returns a string representation of the character.
         :return: A string representing the character's state.
         """
         return f"Character with {self.lives} lives, alive: {self.is_alive}, position: ({self.x}, {self.y}), image: {self.image}"
-    def __eq__(self, other):
-        """
-        Checks if two characters are equal.
-        :param other: The other character to compare with.
-        :return: True if the characters are equal, False otherwise.
-        """
-        return super().__eq__(other) and self.lives == other.lives and self.is_alive == other.is_alive
