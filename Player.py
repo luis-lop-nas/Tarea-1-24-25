@@ -13,9 +13,14 @@ class Player(Character):
         # Implement movement logic here
         print(f"{self.name} moves {direction}")
 
-    def shoot(self):
-        # Implement shooting logic here
-        print(f"{self.name} shoots!")
+    def shoot(self, Projectile):
+        """
+        Simulates the player shooting a projectile.
+        """
+        # Create a projectile object (assuming a Projectile class exists)
+        projectile = Projectile(self.name, position=self.position, direction="forward")
+        print(f"{self.name} shoots a projectile!")
+        return projectile
 
     def collide(self, other_entity):
         # Implement collision logic here
@@ -24,7 +29,11 @@ class Player(Character):
             print(f"{self.name} was hit! Lives remaining: {self.lives}")
             if self.lives <= 0:
                 print(f"Game Over for {self.name}!")
-
+        elif hasattr(other_entity, "is_enemy") and other_entity.is_enemy:
+            # If the player collides with an enemy, shoot automatically
+            print(f"{self.name} collided with an enemy!")
+            self.shoot(Projectile)
+                
     def reset(self):
         # Reset player-specific attributes
         self.score = 0
