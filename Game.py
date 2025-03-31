@@ -3,8 +3,6 @@ from Opponent import Opponent
 from Boss import Boss  
 
 # The score attribute is already defined in the Game class's __init__ method.
-
-
 class Game:
     def __init__(self):
         self.score = 0
@@ -25,8 +23,11 @@ class Game:
             print("Game is not running.")
 
     def end_game(self):
+        if isinstance(self.opponent, Boss) and self.lives > 0:
+            print("Congratulations! You defeated the final boss and won the game!")
+        else:
+            print("Game ended!")
         self.is_running = False
-        print("Game ended!")
 
     def reset(self):
         self.score = 0
@@ -118,3 +119,13 @@ class Game:
         else:
             print("Game is not running.")
     
+    def remove_opponent(self):
+        """
+        Removes the current opponent and spawns a boss if the opponent is defeated.
+        """
+        if self.is_running and self.opponent:
+            print(f"Opponent {self.opponent} has been defeated!")
+            self.opponent = None
+            self.spawn_boss()
+        else:
+            print("Game is not running or no opponent to remove.")
