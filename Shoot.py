@@ -15,10 +15,8 @@ class Shot(Entity):
         # Implement movement logic here
         pass
 
-    def collide(self, other_entity):
-        """
-        Handle collision with another entity.
-        :param other_entity: The entity this shot collides with.
-        """
-        # Implement collision logic here
-        pass
+    def collide(self, other_entity, damage):
+        self.lives -= damage
+        if self.lives <= 0:
+            self.is_alive = False
+        print(f"Shot collided with {other_entity}.")
