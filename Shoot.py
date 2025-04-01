@@ -26,16 +26,42 @@ class Shot(Entity):
     
             
     def move(self):
-        # Implement logic to move the shot
-        pass
+        """
+        Moves the shot based on its speed.
+        If the shot moves out of bounds, it is marked as not alive.
+        """
+        self.y -= self.speed  # Move the shot upwards by reducing its y-coordinate
+        if self.y < 0:  # Check if the shot is out of bounds
+            self.is_alive = False
 
-    def hit_target(self):
-        # Implement logic to check if the shot hits a target
-        pass
+    def hit_target(self, target):
+        """
+        Checks if the shot hits a target.
+        :param target: The target to check collision with.
+        :return: True if the shot hits the target, False otherwise.
+        """
+        if not self.is_alive:
+            return False  # Dead shots cannot hit targets
+
+        # Check for collision with the target
+        if (self.x < target.x + target.width and
+            self.x + self.width > target.x and
+            self.y < target.y + target.height and
+            self.y + self.height > target.y):
+            self.is_alive = False  # Mark the shot as not alive after hitting
+            return True
+
+        return False
 
     def explode(self):
-        # Implement logic for explosion
-        pass
+        """
+        Handles the logic for when the shot explodes.
+        Marks the shot as a bomb, sets it as exploded, and performs any additional logic.
+        """
+        if self.is_bomb and not self.is_bomb_exploded:
+            self.is_bomb_exploded = True
+            self.is_alive = False  # The shot is no longer alive after exploding
+            # Add additional explosion logic here, such as affecting nearby entities
 
     def reset(self):
         """
@@ -64,6 +90,7 @@ class Shot(Entity):
             "is_bomb_exploded": self.is_bomb_exploded
         })
         return data
+    
     def deserialize(self, data):
         """"
         "Deserializes the shot's state from a dictionary."

@@ -1,5 +1,7 @@
 # Tarea-1-24-25: Juego de Disparos en Python
 
+https://github.com/luis-lop-nas/Tarea-1-24-25.git
+
 ## Descripción
 Este proyecto consiste en un **juego de disparos** desarrollado en Python utilizando los principios de **Programación Orientada a Objetos (POO)**. El objetivo del juego es controlar un personaje principal, disparar a los enemigos, esquivar sus disparos y convertirlos en estrellas para avanzar en el juego. Al derrotar a un enemigo, aparece un jefe final que se mueve más rápido y representa un desafío mayor.
 
