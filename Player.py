@@ -1,8 +1,6 @@
 from Character import Character
 import time
 
-
-
 class Player(Character):
     def __init__(self, name, score=0, lives=3):
         super().__init__(name)
@@ -22,7 +20,7 @@ class Player(Character):
         print(f"{self.name} shoots a projectile!")
         return projectile
 
-    def collide(self, other_entity):
+    def collide(self, other_entity, Projectile):
         # Implement collision logic here
         if hasattr(other_entity, "is_enemy_shot") and other_entity.is_enemy_shot:
             self.lives -= 1
