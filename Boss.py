@@ -1,4 +1,5 @@
 from Opponent import Opponent
+import pygame
 
 class Boss(Opponent):
     

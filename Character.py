@@ -1,5 +1,6 @@
 from Entity import Entity
 from Shoot import Shoot
+import pygame
 
 class Character(Entity):
     
@@ -32,7 +33,6 @@ class Character(Entity):
         """
         Handles collision with another entity.
         """
-       
         if self.is_alive and other_entity.is_alive:
             if hasattr(other_entity, "is_enemy_shot") and other_entity.is_enemy_shot:
                 self.lives -= 1

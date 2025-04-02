@@ -1,4 +1,5 @@
 from Entity import Entity
+import pygame
 
 class Shot(Entity):
 

@@ -1,5 +1,7 @@
 from Character import Character
 from Shoot import Shoot
+import pygame
+
 class Opponent(Character):
     def __init__(self, is_star=False, *args, **kwargs):
         super().__init__(*args, **kwargs)
