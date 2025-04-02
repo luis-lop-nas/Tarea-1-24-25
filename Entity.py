@@ -1,4 +1,5 @@
 class Entity:
+    
     def __init__(self, x, y, image):
         self.x = x
         self.y = y
@@ -33,5 +34,6 @@ class Entity:
         print(f"Resetting entity at ({self.x}, {self.y}) with image {self.image}")
         self.x = 0
         self.y = 0
+        self.image = None
         
     

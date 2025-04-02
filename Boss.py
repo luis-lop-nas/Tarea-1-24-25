@@ -8,11 +8,16 @@ class Boss(Opponent):
     def special_attack(self):
         # Implementa un ataque especial del jefe final
         print("El jefe final realiza un ataque especial devastador.")
+        # Lógica adicional para el ataque especial
+        damage = 50  # Daño del ataque especial
+        print(f"El ataque especial causa {damage} puntos de daño.")
+        return damage
 
     def reset(self):
         # Resetea el estado del jefe final
         super().reset()
         print("El jefe final ha sido reseteado.")
+        
     def serialize(self):
         """"
         "Deserializa el estado del jefe final desde un diccionario."
@@ -40,6 +45,7 @@ class Boss(Opponent):
     def move(self):
         # Implementa la lógica de movimiento del jefe final
         print(f"El jefe final se mueve a ({self.x}, {self.y})")
+        
     def hit_target(self):
         # Implementa la lógica para verificar si el jefe final golpea un objetivo
         print("El jefe final ha golpeado un objetivo.")
