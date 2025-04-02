@@ -57,3 +57,29 @@ class Character(Entity):
         Returns a string representation of the character.
         """
         return f"Character with {self.lives} lives, alive: {self.is_alive}, position: ({self.x}, {self.y}), image: {self.image}"
+
+    def serialize(self):
+        """
+        Serializes the character's state into a dictionary.
+        """
+        return {
+            "lives": self.lives,
+            "is_alive": self.is_alive,
+            "x": self.x,
+            "y": self.y,
+            "bullets": getattr(self, "bullets", 0),
+            "image": self.image
+        }
+
+    @classmethod
+    def deserialize(cls, data):
+        """
+        Deserializes the character's state from a dictionary.
+        """
+        character = cls(lives=data.get("lives", 3))
+        character.is_alive = data.get("is_alive", True)
+        character.x = data.get("x", 0)
+        character.y = data.get("y", 0)
+        character.bullets = data.get("bullets", 100)
+        character.image = data.get("image", None)
+        return character

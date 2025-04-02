@@ -36,4 +36,13 @@ class Entity:
         self.y = 0
         self.image = None
         
-    
+    def serialize(self):
+        return {
+            "x": self.x,
+            "y": self.y,
+            "image": self.image
+        }
+
+    @staticmethod
+    def deserialize(data):
+        return Entity(data["x"], data["y"], data["image"])

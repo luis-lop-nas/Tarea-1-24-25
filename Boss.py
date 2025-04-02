@@ -66,3 +66,30 @@ class Boss(Opponent):
         boss = Boss(self.x, self.y, self.speed)
         boss.is_boss = True
         print("¡El jefe final ha aparecido!")
+        
+    def serialize(self):
+        """
+        Serializa el estado del jefe final en un diccionario.
+        :return: Un diccionario que representa el estado del jefe final.
+        """
+        return {
+            "x": self.x,
+            "y": self.y,
+            "speed": self.speed,
+            "health": self.health,
+            "is_alive": self.is_alive,
+            "enemigos_derrotados": self.enemigos_derrotados
+        }
+
+    @staticmethod
+    def deserialize(data):
+        """
+        Deserializa un diccionario para crear una instancia de Boss.
+        :param data: Un diccionario que contiene el estado del jefe final.
+        :return: Una instancia de Boss.
+        """
+        boss = Boss(data["x"], data["y"], data["speed"] / 1.5)  # Ajusta la velocidad al valor original
+        boss.health = data["health"]
+        boss.is_alive = data["is_alive"]
+        boss.enemigos_derrotados = data["enemigos_derrotados"]
+        return boss

@@ -51,4 +51,29 @@ class Opponent(Character):
         # Reset other opponent-specific attributes here
         pass
     
-    
+    def serialize(self):
+        """
+        Serializes the opponent's state into a dictionary.
+        """
+        return {
+            "is_star": self.is_star,
+            "lives": self.lives,
+            "is_alive": self.is_alive,
+            "position": {"x": self.position.x, "y": self.position.y},
+            "velocity": {"x": self.velocity.x, "y": self.velocity.y},
+        }
+
+    @classmethod
+    def deserialize(cls, data, *args, **kwargs):
+        """
+        Deserializes a dictionary into an Opponent object.
+        :param data: The dictionary containing the opponent's state.
+        """
+        opponent = cls(is_star=data["is_star"], *args, **kwargs)
+        opponent.lives = data["lives"]
+        opponent.is_alive = data["is_alive"]
+        opponent.position.x = data["position"]["x"]
+        opponent.position.y = data["position"]["y"]
+        opponent.velocity.x = data["velocity"]["x"]
+        opponent.velocity.y = data["velocity"]["y"]
+        return opponent

@@ -71,3 +71,30 @@ class Shot(Entity):
         self.y = 0
         self.speed = 0
 
+    def serialize(self):
+        """
+        Serializes the shot's state into a dictionary.
+        """
+        return {
+            'x': self.x,
+            'y': self.y,
+            'speed': self.speed,
+            'is_alive': self.is_alive,
+            'is_star': self.is_star,
+            'is_bomb': self.is_bomb,
+            'is_bomb_exploded': self.is_bomb_exploded
+        }
+
+    @classmethod
+    def deserialize(cls, data):
+        """
+        Deserializes a dictionary into a Shot object.
+        :param data: A dictionary containing the shot's state.
+        :return: A Shot object.
+        """
+        shot = cls(data['x'], data['y'], None, data['speed'])
+        shot.is_alive = data['is_alive']
+        shot.is_star = data['is_star']
+        shot.is_bomb = data['is_bomb']
+        shot.is_bomb_exploded = data['is_bomb_exploded']
+        return shot

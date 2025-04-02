@@ -77,4 +77,28 @@ class Player(Character):
         else:
             print(f"{self.name} cannot respawn. No lives remaining.")
     
+    def serialize(self):
+        """
+        Serializes the player's state into a dictionary.
+        :return: A dictionary containing the player's state.
+        """
+        return {
+            "name": self.name,
+            "score": self.score,
+            "lives": self.lives,
+            "position": self.position,
+            "is_alive": self.is_alive
+        }
+
+    @classmethod
+    def deserialize(cls, data):
+        """
+        Deserializes a dictionary into a Player object.
+        :param data: A dictionary containing the player's state.
+        :return: A Player object.
+        """
+        player = cls(name=data["name"], score=data["score"], lives=data["lives"])
+        player.position = data.get("position", [0, 0])
+        player.is_alive = data.get("is_alive", True)
+        return player
     
