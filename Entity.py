@@ -5,12 +5,15 @@ class Entity:
     def __init__(self, x, y, entity_type):
         self.x = x
         self.y = y
+        self.entity_type = entity_type
         if entity_type == "player":
             self.image = pygame.image.load("player_image.png").convert_alpha()
         elif entity_type == "opponent":
             self.image = pygame.image.load("opponent_image.png").convert_alpha()
         elif entity_type == "boss":
             self.image = pygame.image.load("boss_image.png").convert_alpha()
+        else:
+            self.image = None
 
     def __str__(self):
         return f"Entity at ({self.x}, {self.y}) with image {self.image}"
@@ -47,9 +50,9 @@ class Entity:
         return {
             "x": self.x,
             "y": self.y,
-            "image": self.image
+            "entity_type": self.entity_type
         }
 
     @staticmethod
     def deserialize(data):
-        return Entity(data["x"], data["y"], data["image"])
+        return Entity(data["x"], data["y"], data["entity_type"])
