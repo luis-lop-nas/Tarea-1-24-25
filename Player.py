@@ -1,7 +1,7 @@
 from Character import Character
 from Shoot import Shoot
 import time
-
+import pygame
 class Player(Character):
     
     def __init__(self, name, score=0, lives=3):

@@ -1,9 +1,16 @@
+import pygame
+
 class Entity:
     
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, entity_type):
         self.x = x
         self.y = y
-        self.image = image
+        if entity_type == "player":
+            self.image = pygame.image.load("player_image.png").convert_alpha()
+        elif entity_type == "opponent":
+            self.image = pygame.image.load("opponent_image.png").convert_alpha()
+        elif entity_type == "boss":
+            self.image = pygame.image.load("boss_image.png").convert_alpha()
 
     def __str__(self):
         return f"Entity at ({self.x}, {self.y}) with image {self.image}"

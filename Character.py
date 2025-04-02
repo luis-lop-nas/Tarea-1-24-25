@@ -1,5 +1,6 @@
 from Entity import Entity
 from Shoot import Shoot
+
 class Character(Entity):
     
     def __init__(self, lives):
@@ -20,11 +21,11 @@ class Character(Entity):
         else:
             print(f"Invalid direction: {direction}")
 
-    def shoot(self):
+    def shoot(self, direction="up", speed=5):
         """
-        Allows the character to shoot.
+        Allows the character to shoot in a specified direction with a given speed.
         """
-        shoot = Shoot(self.x, self.y, direction="up", speed=5)
+        shoot = Shoot(x=self.x, y=self.y, direction=direction, speed=speed, owner=self)
         return shoot
     
     def collide(self, other_entity):
