@@ -15,7 +15,11 @@ class Boss(Opponent):
         
     def move(self):
         # Implementa la lógica de movimiento del jefe final
-        print(f"El jefe final se mueve a ({self.x}, {self.y})")    
+        print(f"El jefe final se mueve a ({self.x}, {self.y})")
+        
+    def is_boss(self):
+        # Verifica si el objeto es un jefe final
+        return True
         
     def special_attack(self):
         # Implementa un ataque especial del jefe final
@@ -45,10 +49,6 @@ class Boss(Opponent):
         # Implementa la lógica para cuando el jefe final es derrotado
         print("El jefe final ha sido derrotado.")
         self.is_alive = False
-        
-    def is_boss(self):
-        # Verifica si el objeto es un jefe final
-        return True
     
     def __init__(self, x, y, speed):
         super().__init__(x, y, speed * 1.5)  # El jefe final se mueve más rápido

@@ -16,6 +16,13 @@ class Opponent(Character):
         if self.position.x <= 0 or self.position.x >= self.screen_width - self.width:
             self.velocity.x = -self.velocity.x  # Reverse direction when hitting screen edges
         self.position.x += self.velocity.x
+        
+    def is_opponent(self):
+        """
+        Returns True if the entity is an opponent.
+        :return: True if the entity is an opponent, False otherwise.
+        """
+        return True
 
     def shoot(self):
         """

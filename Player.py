@@ -33,6 +33,13 @@ class Player(Character):
             self.position[0] += 1
 
         print(f"{self.name} moves {direction} to position {self.position}")
+        
+    def is_player(self):
+        """
+        Returns True if the entity is a player.
+        :return: True if the entity is a player, False otherwise.
+        """
+        return True
 
     def shoot(self):
     
